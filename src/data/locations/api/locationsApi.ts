@@ -13,7 +13,7 @@ export default class LocationsApi {
 
             console.log("loaded", response.result);
             return Result.success(response.result ?? {});
-        } catch (err) {
+        } catch (err : any) {
             console.log("an error occurred during locations request");
             return Result.failure(err);
         }

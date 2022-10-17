@@ -22,7 +22,7 @@ export default class ScheduleApi {
             );
             return Result.success(response.result ?? Array<SearchEntity>());
         }
-        catch (err) {
+        catch (err : any) {
             if (err['status'] == 401) {
                 return Result.failure(new UnauthorizedAccessError("Авторизируйтесь!"));
             } else return Result.failure(err);

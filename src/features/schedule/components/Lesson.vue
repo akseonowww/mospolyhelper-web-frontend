@@ -15,13 +15,14 @@
     import { defineComponent } from "vue";
     import LessonTimes from '@/domain/schedule/utils/lessonTimes'
     import { isImportant } from '@/domain/schedule/utils/lessonUtils'
+import { strict } from "assert";
 
     const lesson = defineComponent({
         props: {
             previousEqual: Boolean,
             order: Number,
             title: String,
-            type: String,
+            type: String || undefined,
             teacher: String,
             groups: String,
             auditorium: String,
@@ -33,7 +34,7 @@
                 const times = LessonTimes.getTime(this.order!, false);
                 return this.order! + 1 + ') ' + times[0] + ' - ' + times[1];
             },
-            getFormattedDate(date1: Date, date2: Date) {
+            getFormattedDate(date1: any, date2: any) {
                 const moment = require('moment');
                 if (date1.getTime() == date2.getTime()) {
                     return moment(date1).format('D MMMM');
@@ -41,12 +42,12 @@
                     return moment(date1).format('D MMMM') + ' - ' + moment(date2).format('D MMMM');
                 }
             },
-            isImportant(type: string): boolean {
+            isImportant(type: any): boolean {
                 return isImportant(type);
             }
         }
     }
-});
+);
 
 export default lesson;
 </script>

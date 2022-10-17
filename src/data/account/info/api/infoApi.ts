@@ -18,7 +18,7 @@ export default class InfoApi {
             console.log("loaded", response.result);
             return Result.success(response.result ?? {});
         }
-        catch (err) {
+        catch (err : any) {
             if (err['statusCode'] == 401) {
                 return Result.failure(new UnauthorizedAccessError("Авторизируйтесь!"));
             } else return Result.failure(err);

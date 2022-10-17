@@ -10,7 +10,7 @@ export default class AuthRemoteDataSource {
     async getSessionId(login: string, password: string): Promise<Result<string>> {
         try {
             return Result.success(await this.api.logIn(login, password) ?? '');
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
             if (e['statusCode'] == 401) {
                 return Result.failure(new UnauthorizedAccessError("Авторизируйтесь!"));
@@ -21,7 +21,7 @@ export default class AuthRemoteDataSource {
     async updateSessionId(login: string, password: string, sessionId: string): Promise<Result<string>> {
         try {
             return Result.success(await this.api.logIn(login, password, sessionId) ?? '');
-        } catch (e) {
+        } catch (e : any) {
             console.log(e);
             if (e['statusCode'] == 401) {
                 return Result.failure(new UnauthorizedAccessError("Авторизируйтесь!"));
@@ -32,7 +32,7 @@ export default class AuthRemoteDataSource {
     async checkPermissions(sessionId: string): Promise<Result<Array<string>>> {
         try {
             return Result.success(await this.api.permissionsCheck(sessionId));
-        } catch (e) {
+        } catch (e : any) {
             console.log(e);
             if (e['statusCode'] == 401) {
                 return Result.failure(new UnauthorizedAccessError("401"));

@@ -26,7 +26,7 @@ export default class DealinesApi {
                 options
             );
             return Result.success(response.result ?? new MyPortfolio(""));
-        } catch (err) {
+        } catch (err : any) {
             console.log(err);
             if (err['statusCode'] == 401) {
                 return Result.failure(new UnauthorizedAccessError("Авторизируйтесь!"));
@@ -45,7 +45,7 @@ export default class DealinesApi {
             );
             return Result.success(response.result ?? new MyPortfolio(""));
         }
-        catch (err) {
+        catch (err : any) {
             console.log(err);
             if (err['statusCode'] == 401) {
                 return Result.failure(new UnauthorizedAccessError("Авторизируйтесь!"));

@@ -22,7 +22,7 @@ export default class ScheduleApi {
             );
             return Result.success(response.result ?? new SearchResult(1, 1, Array<SearchEntity>()));
         }
-        catch (err) {
+        catch (err : any) {
             console.log(err);
             if (err['statusCode'] == 401) {
                 return Result.failure(new UnauthorizedAccessError("Авторизируйтесь!"));
