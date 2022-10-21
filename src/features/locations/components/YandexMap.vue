@@ -121,6 +121,16 @@ export default YandexMap;
     height: 80vh;
     width: 80vw;
     margin: 5% auto;
+
+    
+}
+@media screen and (max-width: 600px) {
+    .map {
+        margin: 0;
+        border-radius: 32px;
+        overflow: hidden;
+        width: 100%;
+    }
 }
 
 #loader {

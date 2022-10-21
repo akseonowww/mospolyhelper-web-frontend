@@ -4,9 +4,9 @@
         <div class="type"
              v-bind:class="[isImportant(type) ? 'important' : 'not-important']">{{type}}</div>
         <div class="title">{{title}}</div>
-        <div>{{teacher}}</div>
-        <div v-if="groups">{{groups}}</div>
-        <div v-html="auditorium"></div>
+        <!-- <div v-if="groups">{{groups}}</div> -->
+        <div class="auditorium" v-html="auditorium"></div>
+        <div class="teacher">{{teacher}}</div>
         <div class="date">{{getFormattedDate(dateFrom, dateTo)}}</div>
     </div>
 </template>
@@ -79,13 +79,16 @@ export default lesson;
 .auditorium {
     padding: 4px 0 6px;
 }
-.dateFromTo {
-    color: rgba(0, 0, 0, 0.4);
+.date {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 12px;
 }
 .teacher {
     color: #ce8a5a;
     font-size: 14px;
     line-height: 14px;
+    margin-bottom: 2px;
 }
+
 </style>
 

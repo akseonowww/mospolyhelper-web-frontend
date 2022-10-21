@@ -6,30 +6,22 @@
                 <form class="search" click="download">
                     <input v-model="group" type="text" placeholder="Номер группы" />
                     <button class="searchBtn" @click="download"><i class="fa fa-search"> </i> Найти</button>
-                    <button @click="advancedInit" class="searchBtn smartSearchBtn">Продвинутый поиск</button>
+                    <!-- <button @click="advancedInit" class="searchBtn smartSearchBtn">Продвинутый поиск</button> -->
                 </form>
                 <div class="filters-container">
-                    <span>
-                        Фильтр по датам:
-                    </span>
+                    <span> Фильтр по датам: </span>
                     <div class="filters">
                         <div class="filters-item">
                             <input class="checkbox" type="checkbox" v-model="showEnded" id="showEnded" />
-                            <label for="showEnded">
-                                Закончившиеся
-                            </label>
+                            <label for="showEnded"> Закончившиеся </label>
                         </div>
                         <div class="filters-item">
                             <input class="checkbox" type="checkbox" v-model="showCurrent" id="showCurrent" />
-                            <label for="showCurrent">
-                                Текущие
-                            </label>
+                            <label for="showCurrent"> Текущие </label>
                         </div>
                         <div class="filters-item">
                             <input class="checkbox" type="checkbox" v-model="showNotStarted" id="showNotStarted" />
-                            <label for="showNotStarted">
-                                Неначавшиеся
-                            </label>
+                            <label for="showNotStarted"> Неначавшиеся </label>
                         </div>
                     </div>
                 </div>
@@ -40,13 +32,11 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
                     <div class="dateText">
-                        <small>
-                            Неделя
-                        </small>
+                        <small> Неделя </small>
                         <div>{{ getFormattedDate(dates[0]) }} - {{ getFormattedDate(dates[6]) }}</div>
                     </div>
                     <a class="next" @click="setNextWeek">
-                        <i class="fa fa-angle-right "></i>
+                        <i class="fa fa-angle-right"></i>
                     </a>
                 </div>
             </div>
@@ -72,10 +62,10 @@
             <button
                 v-if="
                     groupList?.length ||
-                        teacherList?.length ||
-                        auditoriumList?.length ||
-                        titleList?.length ||
-                        typeList?.length
+                    teacherList?.length ||
+                    auditoriumList?.length ||
+                    titleList?.length ||
+                    typeList?.length
                 "
                 class="searchBtn"
                 @click="advancedSearch"
@@ -124,7 +114,7 @@ const schedule = defineComponent({
             checkedTitleList: new Array<string>(),
             checkedTypeList: new Array<string>(),
             isLoading: false,
-            advancedSearchVisible: false
+            advancedSearchVisible: false,
         };
     },
     watch: {
@@ -139,12 +129,12 @@ const schedule = defineComponent({
         },
         schedule(newValue, oldValue) {
             this.update();
-        }
+        },
     },
     components: {
         weeklySchedule,
         arraySelector,
-        loadingAnim
+        loadingAnim,
     },
     methods: {
         getFormattedDate(date: Date) {
@@ -153,7 +143,7 @@ const schedule = defineComponent({
         },
         download() {
             this.isLoading = true;
-            useCase.getScheduleByGroup(this.group).then(value => {
+            useCase.getScheduleByGroup(this.group).then((value) => {
                 this.schedule = value;
                 this.isLoading = false;
             });
@@ -161,27 +151,27 @@ const schedule = defineComponent({
         advancedInit() {
             this.$data.advancedSearchVisible = !this.$data.advancedSearchVisible;
             if (this.groupList.length == 0) {
-                useCase.getGroupList().then(value => {
+                useCase.getGroupList().then((value) => {
                     this.groupList = value;
                 });
             }
             if (this.teacherList.length == 0) {
-                useCase.getTeacherList().then(value => {
+                useCase.getTeacherList().then((value) => {
                     this.teacherList = value;
                 });
             }
             if (this.auditoriumList.length == 0) {
-                useCase.getAuditoriumList().then(value => {
+                useCase.getAuditoriumList().then((value) => {
                     this.auditoriumList = value;
                 });
             }
             if (this.titleList.length == 0) {
-                useCase.getTitleList().then(value => {
+                useCase.getTitleList().then((value) => {
                     this.titleList = value;
                 });
             }
             if (this.typeList.length == 0) {
-                useCase.getTypeList().then(value => {
+                useCase.getTypeList().then((value) => {
                     this.typeList = value;
                 });
             }
@@ -195,7 +185,7 @@ const schedule = defineComponent({
                     this.checkedTitleList,
                     this.checkedTypeList
                 )
-                .then(value => {
+                .then((value) => {
                     this.schedule = value;
                 });
         },
@@ -249,13 +239,13 @@ const schedule = defineComponent({
         },
         typeListChanged(value: Array<string>) {
             this.checkedTypeList = value;
-        }
+        },
     },
     created() {
         this.setCurrentWeek();
     },
     computed: {
-        loadingAdvanced: function(): boolean {
+        loadingAdvanced: function (): boolean {
             return (
                 this.groupList.length == 0 ||
                 this.teacherList.length == 0 ||
@@ -263,8 +253,8 @@ const schedule = defineComponent({
                 this.titleList.length == 0 ||
                 this.typeList.length == 0
             );
-        }
-    }
+        },
+    },
 });
 
 export default schedule;
@@ -285,6 +275,12 @@ export default schedule;
         flex-direction: column;
         gap: 24px;
         margin-bottom: 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .schedule-container {
+        /* transform: scale(0.7); */
     }
 }
 
@@ -346,11 +342,26 @@ input[type="text"] {
     align-items: center;
     gap: 8px;
 }
+@media screen and (max-width: 600px) {
+    .filters-container {
+        flex-direction: column;
+    }
+
+    .filters-container span {
+        display: none;
+    }
+}
 .filters {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
+}
+@media screen and (max-width: 600px) {
+    .filters {
+        flex-wrap: wrap;
+        gap: 10px 16px;
+    }
 }
 .filters-item {
     display: flex;
@@ -425,6 +436,11 @@ input[type="text"] {
     justify-content: space-between;
     align-items: center;
 }
+@media screen and (max-width: 600px) {
+    .datesOuter {
+        padding: 0 1em;
+    }
+}
 .dates {
     height: 44px;
     padding: 1px;
@@ -434,7 +450,7 @@ input[type="text"] {
     gap: 12px;
 }
 .dates > * {
-    /* display: inline-block; */
+    box-sizing: border-box;
 }
 .dateText {
     font-size: 20px;
@@ -445,6 +461,11 @@ input[type="text"] {
     height: 100%;
     width: 260px;
     background-color: #fff;
+}
+@media screen and (max-width: 600px) {
+    .dateText {
+        /* width: 100%; */
+    }
 }
 /* Next & previous buttons */
 .prev,

@@ -51,7 +51,7 @@
 
 <style scoped>
     * {
-       
+       box-sizing: border-box;
     }
     .btn {
         background-color: DodgerBlue; /* Blue background */

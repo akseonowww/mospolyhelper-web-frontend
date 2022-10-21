@@ -4,12 +4,10 @@
             <div class="logo">
                 <img src="favicon.ico" alt="Logo" />
                 <div class="logoText">
-                    <h1>
-                        mospolyhelper
-                    </h1>
+                    <h1>mospolyhelper</h1>
                 </div>
             </div>
-            <div class="navbar-links">
+            <div class="navbar-links scrollApp">
                 <HeaderLink to="/" exact>Главная</HeaderLink>
                 <HeaderLink to="/schedule">Расписание</HeaderLink>
                 <HeaderLink to="/locations">Карта</HeaderLink>
@@ -55,7 +53,7 @@ const useCase = new AuthUseCase(
 
 const Header = defineComponent({
     props: {
-        permission: Array
+        permission: Array,
     },
     data() {
         return {
@@ -69,12 +67,12 @@ const Header = defineComponent({
             myportfolio: false,
             portfolios: false,
             messages: false,
-            emitter: getCurrentInstance()?.appContext.config.globalProperties.emitter
+            emitter: getCurrentInstance()?.appContext.config.globalProperties.emitter,
         };
     },
     components: {
         HeaderLink,
-        loadingAnim
+        loadingAnim,
     },
     mounted() {
         this.show();
@@ -95,10 +93,10 @@ const Header = defineComponent({
             this.portfolios = false;
             this.messages = false;
             let self = this;
-            useCase.getPermissions().then(result => {
+            useCase.getPermissions().then((result) => {
                 if (result.isSuccess) {
                     console.log(result.value);
-                    (result.value as Array<string>).forEach(val => {
+                    (result.value as Array<string>).forEach((val) => {
                         switch (val) {
                             case "dialogs":
                                 self.dialogs = true;
@@ -138,12 +136,12 @@ const Header = defineComponent({
                 }
                 this.isLoading = false;
             });
-        }
+        },
     },
     computed: {
-        premissions: function(): string {
+        premissions: function (): string {
             let self = this;
-            this.permission?.forEach(val => {
+            this.permission?.forEach((val) => {
                 switch (val) {
                     case "dialogs":
                         self.dialogs = true;
@@ -169,8 +167,8 @@ const Header = defineComponent({
                 }
             });
             return "";
-        }
-    }
+        },
+    },
 });
 
 export default Header;
@@ -183,6 +181,11 @@ export default Header;
     backdrop-filter: blur(4px);
     height: 60px;
 }
+@media screen and (max-width: 600px) {
+    .navbar-outer {
+        height: auto;
+    }
+}
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -192,14 +195,37 @@ export default Header;
     gap: 12px;
     padding: 0 2em;
 }
-
+@media screen and (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 2em 0;
+        align-items: flex-start;
+    }
+}
 .navbar-links {
     display: flex;
     justify-content: center;
     width: 100%;
 }
-
+@media screen and (max-width: 600px) {
+    .navbar-links {
+        width: 100%;
+        gap: 1em;
+        justify-content: flex-start;
+        overflow-x: scroll;
+        /* padding-left: 2em; */
+    }
+}
 /* The dropdown container */
+@media screen and (max-width: 600px) {
+    .navbar-group {
+        position: absolute;
+        top: 32px;
+        right: 0;
+        padding-right: 32px;
+    }
+}
 .dropdown {
     overflow: hidden;
     justify-self: end;
@@ -245,7 +271,22 @@ export default Header;
     text-align: left;
     border-radius: 0;
 }
-
+@media screen and (max-width: 600px) {
+    .dropdown-content {
+        justify-content: start;
+        min-width: 100vw;
+        right: 0;
+    }
+    .dropdown-content div {
+        width: 100%;
+        padding: 12px;
+    }
+    .dropdown-content div .nav-link-center {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+}
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content div:hover {
     background-color: #2e405436;
@@ -264,6 +305,12 @@ export default Header;
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
+}
+
+@media screen and (max-width: 600px) {
+    #navbar-outer {
+        position: relative;
+    }
 }
 
 .loading-container {
@@ -289,6 +336,11 @@ export default Header;
     display: flex;
     align-items: center;
     gap: 8px;
+}
+@media screen and (max-width: 600px) {
+    .logo {
+        padding-left: 2em;
+    }
 }
 .logo img {
     height: 32px;

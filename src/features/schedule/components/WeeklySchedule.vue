@@ -1,5 +1,5 @@
 <template>
-    <div class="weeklySchedule" >
+    <div class="weeklySchedule scrollApp" >
         <dailySchedule v-for="(dailySchedule, i) in getDailySchedules(dailySchedules)"
                        :date="dates[i]"
                        :dailySchedule="dailySchedule" />

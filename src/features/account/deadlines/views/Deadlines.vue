@@ -119,7 +119,7 @@
 
 <style scoped>
     * {
-        
+        box-sizing: border-box;
     }
 
     .container {
