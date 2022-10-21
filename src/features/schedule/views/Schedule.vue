@@ -11,15 +11,15 @@
                 <div class="filters-container">
                     <span> Фильтр по датам: </span>
                     <div class="filters">
-                        <div class="filters-item">
+                        <div class="filters-item checkbox-element">
                             <input class="checkbox" type="checkbox" v-model="showEnded" id="showEnded" />
                             <label for="showEnded"> Закончившиеся </label>
                         </div>
-                        <div class="filters-item">
+                        <div class="filters-item checkbox-element">
                             <input class="checkbox" type="checkbox" v-model="showCurrent" id="showCurrent" />
                             <label for="showCurrent"> Текущие </label>
                         </div>
-                        <div class="filters-item">
+                        <div class="filters-item checkbox-element">
                             <input class="checkbox" type="checkbox" v-model="showNotStarted" id="showNotStarted" />
                             <label for="showNotStarted"> Неначавшиеся </label>
                         </div>
@@ -284,18 +284,6 @@ export default schedule;
     }
 }
 
-input[type="text"] {
-    box-sizing: border-box;
-    padding: 12px;
-    font-size: 20px;
-    border: 2px solid #b8c1cc;
-    border-radius: 12px;
-    width: 200px;
-    height: 44px;
-    /* background: #f2f3f5; */
-    outline: none;
-}
-
 .searchBtn {
     font-family: Rubik, sans-serif;
     box-sizing: border-box;
@@ -363,74 +351,7 @@ input[type="text"] {
         gap: 10px 16px;
     }
 }
-.filters-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all 0.5s;
-}
-.filters-item input[checked] {
-    background: #2e4054;
-    color: #ffffff;
-}
-.checkbox {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    transition: all 0.5s;
-    margin-bottom: 32px;
-}
-.checkbox + label {
-    display: inline-flex;
-    align-items: center;
-    user-select: none;
-    cursor: pointer;
-}
-.checkbox + label::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-    flex-grow: 0;
-    border: 2px solid #b8c1cc;
-    border-radius: 8px;
-    margin-right: 0.5em;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
-    transition: all 0.5s;
-}
 
-.checkbox:checked + label::before {
-    border-color: #2e4054;
-    background-color: #2e4054;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
-    transition: all 0.5s;
-}
-.checkbox:not(:disabled):not(:checked) + label:hover::before {
-    border-color: #2e4054;
-    transition: all 0.5s;
-}
-.checkbox:not(:disabled):active + label::before {
-    background-color: #2e405409;
-    border-color: #2e405409;
-    transition: all 0.5s;
-}
-.checkbox:focus + label::before {
-    box-shadow: 0 0 0 0.2rem #2e405411;
-    transition: all 0.3s;
-}
-.checkbox:focus:not(:checked) + label::before {
-    border-color: #2e405457;
-    transition: all 0.3s;
-}
-.checkbox:disabled + label::before {
-    background-color: #b8c1cc;
-    transition: all 0.3s;
-}
 .datesOuter {
     display: flex;
     justify-content: space-between;
