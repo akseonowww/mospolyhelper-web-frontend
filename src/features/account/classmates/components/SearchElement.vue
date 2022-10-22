@@ -33,8 +33,8 @@
         },
         computed: {
             imageSrc: function (): String {
-                console.log("https://e.mospolytech.ru/" + this.avatarUrl);
-                return `https://e.mospolytech.ru/${this.avatarUrl}`
+                console.log("https://e.mospolytech.ru/old/" + this.avatarUrl);
+                return `https://e.mospolytech.ru/old/${this.avatarUrl}`
             },
             userStatus: function (): String {
                 return status == 'Пользователь не на сайте' ? "offline" : "online";

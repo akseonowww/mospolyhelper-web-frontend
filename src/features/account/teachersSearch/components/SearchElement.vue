@@ -31,8 +31,8 @@
         },
         computed: {
             imageSrc: function (): String {
-                console.log("https://e.mospolytech.ru/" + this.avatarUrl);
-                return `https://e.mospolytech.ru/${this.avatarUrl}`
+                console.log("https://e.mospolytech.ru/old/" + this.avatarUrl);
+                return `https://e.mospolytech.ru/old/${this.avatarUrl}`
             }
         }
     });
